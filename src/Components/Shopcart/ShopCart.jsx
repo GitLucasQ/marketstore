@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Col, Row, Image } from 'react-bootstrap'
 
-import ProductContext from '../Context/Products/ProductContext'
+import ProductContext from '../../Context/Products/ProductContext'
 
 const ShopCart = () => {
 

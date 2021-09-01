@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import Navigation from './Navigation'
-import ShopCart from './ShopCart'
+import ShopCart from './Shopcart/ShopCart'
 
 import ProductContext from '../Context/Products/ProductContext'
 import { Card, Col, Container, Row, Button, ListGroup } from 'react-bootstrap'
