@@ -55,6 +55,14 @@ const ProductState = (props) => {
         dispatch({ type: ADD_TO_CART, payload: selectedProduct })
     }
 
+    const increaseQuantity = (selectedProduct) => {
+        dispatch({ type: INCREASE_QUANTITY, payload: selectedProduct })
+    }
+
+    const decreaseQuantity = (selectedProduct) => {
+        dispatch({ type: DECREASE_QUANTITY, payload: selectedProduct })
+    }
+
     return (
         <ProductContext.Provider
             value={{
@@ -67,6 +75,8 @@ const ProductState = (props) => {
                 getProductsByCategories,
                 getAllProducts,
                 addProductToCart,
+                increaseQuantity,
+                decreaseQuantity,
                 ...state
             }}>
             {props.children}

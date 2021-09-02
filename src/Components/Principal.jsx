@@ -48,7 +48,7 @@ const Principal = () => {
                 <br />
                 <Row>
                     <h5>Choose your product</h5>
-                    <Col xs={8}>
+                    <Col xs={9}>
                         <Row>
                             {
                                 products.map((product) =>
@@ -77,7 +77,7 @@ const Principal = () => {
                             }
                         </Row>
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={3}>
                         <ShopCart />
                     </Col>
                 </Row>

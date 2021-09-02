@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Col, Row, Image } from 'react-bootstrap'
+import QuantityProducts from './QuantityProduct'
 
 import ProductContext from '../../Context/Products/ProductContext'
 
 const ShopCart = () => {
 
-    const { shopCart } = useContext(ProductContext)
-    const productContext = useContext(ProductContext)
+    const { shopCart } = useContext(ProductContext)    
 
     return (
         <div>
@@ -14,17 +14,19 @@ const ShopCart = () => {
             <br />
             {
                 shopCart.map(item =>
-                    <Row key={item._id}>
-                        <Col xs={2}>
+                    <Row className="my-4" key={item._id}>
+                        <Col xs={3}>
                             <Image src={item.imgUrl} height="50px" />
                         </Col>
-                        <Col xs={10}>
+                        <Col xs={9}>
                             <Row style={{ textAlign: 'left' }}>
                                 <p className="text-muted">{item.brand}</p>
                                 <p>{item.name}</p>
                             </Row>
-                            <Row>
-                                <p>Quantity: {item.quantity}</p>
+                            <Row className="justify-content-md-center">
+                                <Col xs={8}>
+                                    <QuantityProducts itemCart={item} />
+                                </Col>
                             </Row>
                         </Col>
                     </Row>
