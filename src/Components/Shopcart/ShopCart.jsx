@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import { Col, Row, Image } from 'react-bootstrap'
+import { Col, Row, Image, Button } from 'react-bootstrap'
 import QuantityProducts from './QuantityProduct'
 
 import ProductContext from '../../Context/Products/ProductContext'
 
 const ShopCart = () => {
 
-    const { shopCart } = useContext(ProductContext)    
+    const { shopCart, sumTotal } = useContext(ProductContext)
 
     return (
         <div>
@@ -31,6 +31,32 @@ const ShopCart = () => {
                         </Col>
                     </Row>
                 )
+            }
+            {
+                sumTotal > 0 &&
+                <div>
+                    <p>Total: ${sumTotal}</p>
+                    <Row>
+                        <Col xs={6}>
+                            <div className="d-grid gap-2">
+                                <Button
+                                    className="btn btn-success">
+                                    CHECKOUT
+                                </Button>
+                            </div>
+
+                        </Col>
+                        <Col xs={6}>
+                            <div className="d-grid gap-2">
+                                <Button
+                                    variant="outline-danger">
+                                    CLEAR
+                                </Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+
             }
         </div>
     )

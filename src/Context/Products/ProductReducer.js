@@ -35,11 +35,13 @@ const ProductReducer = (state, action) => {
         case ADD_TO_CART:
             if (!state.shopCart.find(item => item._id === payload._id)) {
                 state.shopCart.push({ ...payload, quantity: 1 })
+                state.sumTotal = state.sumTotal + payload.price
             }
 
             return {
                 ...state,
-                shopCart: [...state.shopCart]
+                shopCart: [...state.shopCart],
+                sumTotal: state.sumTotal
             };
 
         case INCREASE_QUANTITY:

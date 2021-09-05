@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react'
-import Navigation from './Navigation'
 import ShopCart from './Shopcart/ShopCart'
 
 import ProductContext from '../Context/Products/ProductContext'
@@ -7,7 +6,7 @@ import { Card, Col, Container, Row, Button, ListGroup } from 'react-bootstrap'
 
 const Principal = () => {
 
-    const { products, categories, shopCart } = useContext(ProductContext)
+    const { products, categories } = useContext(ProductContext)
     const productContext = useContext(ProductContext)
 
     useEffect(() => {
@@ -16,16 +15,14 @@ const Principal = () => {
 
     const addProductToCart = (selectedProduct) => {
         productContext.addProductToCart(selectedProduct)
-        console.log(shopCart)
     }
 
     return (
-        <div>
-            <Navigation />
+        <div>            
             <Container fluid className="mt-4">
                 <Row>
                     <h5 style={{ textAlign: 'left' }}>Filter by category</h5>
-                    <ListGroup horizontal variant="flush">
+                    <ListGroup horizontal>
                         <ListGroup.Item
                             style={{ textAlign: 'left' }}
                             action

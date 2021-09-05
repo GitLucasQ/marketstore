@@ -15,7 +15,8 @@ const ProductState = (props) => {
         categories: [],
         selectedCategory: null,
         products: [],
-        shopCart: []
+        shopCart: [],
+        sumTotal: 0
     }
 
     const [state, dispatch] = useReducer(ProductReducer, initialState)
@@ -56,7 +57,9 @@ const ProductState = (props) => {
     }
 
     const increaseQuantity = (selectedProduct) => {
+        console.log(selectedProduct)
         dispatch({ type: INCREASE_QUANTITY, payload: selectedProduct })
+        console.log(state.shopCart)
     }
 
     const decreaseQuantity = (selectedProduct) => {
@@ -70,6 +73,7 @@ const ProductState = (props) => {
                 selectedCategory: state.selectedCategory,
                 products: state.products,
                 shopCart: state.shopCart,
+                sumTotal: state.sumTotal,
                 getCategoriesProducts,
                 getSelectedCategory,
                 getProductsByCategories,
