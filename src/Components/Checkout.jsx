@@ -1,7 +1,10 @@
 import React, { useContext } from 'react'
 
 import ProductContext from '../Context/Products/ProductContext'
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
+
+import ItemsOrderSummary from './Shopcart/ItemOrderSummary'
+import { Link } from 'react-router-dom'
 
 const Checkout = () => {
 
@@ -11,38 +14,45 @@ const Checkout = () => {
         <div>
             <Container fluid className="mt-4">
                 <Row>
-                    <Col xs={8}>
-                        {
-                            shopCart.map(item =>
-                                <Col xs={12}>
-                                    <Card>
-                                        <Row>
-                                            <Col xs={4}>
-                                                <Card.Img
-                                                    style={{ height: '8rem', width: '8rem' }}
-                                                    src={item.imgUrl}
-                                                    variant="top"
-                                                />
-                                            </Col>
-                                            <Col xs={8}>
-                                                <Card.Body style={{ textAlign: 'left' }}>
-                                                    <Card.Subtitle className="mb-2 text-muted">
-                                                        {item.brand}
-                                                    </Card.Subtitle>
-                                                    <Card.Title>{item.name}</Card.Title>
-                                                    <Card.Text>Quantity: {item.quantity}</Card.Text>
-                                                    <Card.Text>Price: ${item.price}</Card.Text>
-                                                </Card.Body>
-                                            </Col>
-                                        </Row>
-                                    </Card>
-                                </Col>
-                            )
-                        }
-                    </Col>
-                    <Col xs={4}>
-                        <h5>RESUMEN</h5>
-                        <p>${sumTotal}</p>
+                    <Col xs={12}>
+                        <Row className="mb-4">
+                            <Col xs={6}>
+                                <h4 style={{ textAlign: 'left' }}>Order Summary</h4>
+                            </Col>
+                            <Col xs={6}>
+                                <h5
+                                    style={{
+                                        textAlign: 'right',
+                                        padding: '0px 40px'
+                                    }}
+                                >
+                                    Items: {shopCart.length}
+                                </h5>
+                            </Col>
+                        </Row>
+                        <Row className="mx-4">
+                            <ItemsOrderSummary />
+                        </Row>
+                        <Row className="mx-4">
+                            <Col>
+                                <div className="d-flex justify-content-start">
+                                    <Link to="/">
+                                        <Button
+                                            variant="outline-primary">
+                                            Continue Shopping
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="d-flex justify-content-end">
+                                    <Button
+                                        className="btn btn-success px-4">
+                                        Checkout
+                                    </Button>
+                                </div>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
