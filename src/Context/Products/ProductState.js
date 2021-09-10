@@ -3,7 +3,8 @@ import axios from 'axios'
 
 import {
     GET_CATEGORIES_PRODUCTS, GET_SELECTED_CATEGORY, GET_PROUDCTS_BY_CATEGORIES,
-    GET_ALL_PRODUCTS, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY
+    GET_ALL_PRODUCTS, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY,
+    CLEAR_SHOPCART, REMOVE_FROM_CART
 } from '../Types'
 import ProductReducer from './ProductReducer'
 import ProductContext from './ProductContext'
@@ -56,6 +57,10 @@ const ProductState = (props) => {
         dispatch({ type: ADD_TO_CART, payload: selectedProduct })
     }
 
+    const removeProductFromCart = (selectedProduct) => {
+        dispatch({ type: REMOVE_FROM_CART, payload: selectedProduct })
+    }
+
     const increaseQuantity = (selectedProduct) => {
         console.log(selectedProduct)
         dispatch({ type: INCREASE_QUANTITY, payload: selectedProduct })
@@ -64,6 +69,10 @@ const ProductState = (props) => {
 
     const decreaseQuantity = (selectedProduct) => {
         dispatch({ type: DECREASE_QUANTITY, payload: selectedProduct })
+    }
+
+    const clearShopCart = () => {
+        dispatch({ type: CLEAR_SHOPCART })
     }
 
     return (
@@ -79,8 +88,10 @@ const ProductState = (props) => {
                 getProductsByCategories,
                 getAllProducts,
                 addProductToCart,
+                removeProductFromCart,
                 increaseQuantity,
                 decreaseQuantity,
+                clearShopCart,
                 ...state
             }}>
             {props.children}

@@ -1,6 +1,7 @@
 import {
     GET_CATEGORIES_PRODUCTS, GET_SELECTED_CATEGORY, GET_PROUDCTS_BY_CATEGORIES,
-    GET_ALL_PRODUCTS, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY
+    GET_ALL_PRODUCTS, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY,
+    CLEAR_SHOPCART, REMOVE_FROM_CART
 } from '../Types'
 
 const ProductReducer = (state, action) => {
@@ -46,16 +47,36 @@ const ProductReducer = (state, action) => {
 
         case INCREASE_QUANTITY:
             state.shopCart[state.shopCart.findIndex(item => item._id === payload._id)].quantity++
+            state.sumTotal = state.sumTotal + payload.price
             return {
                 ...state,
-                shopCart: [...state.shopCart]
+                shopCart: [...state.shopCart],
+                sumTotal: state.sumTotal
             };
 
         case DECREASE_QUANTITY:
             state.shopCart[state.shopCart.findIndex(item => item._id === payload._id)].quantity--
+            state.sumTotal = state.sumTotal - payload.price
             return {
                 ...state,
-                shopCart: [...state.shopCart]
+                shopCart: [...state.shopCart],
+                sumTotal: state.sumTotal
+            };
+
+        case REMOVE_FROM_CART:
+            state.shopCart.splice(state.shopCart.findIndex(item => item._id === payload._id), 1)
+            state.sumTotal = state.sumTotal - (payload.price * payload.quantity)
+            return {
+                ...state,
+                shopCart: [...state.shopCart],
+                sumTotal: state.sumTotal
+            };
+
+        case CLEAR_SHOPCART:
+            return {
+                ...state,
+                shopCart: [],
+                sumTotal: 0
             };
 
         default:

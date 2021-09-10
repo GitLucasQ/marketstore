@@ -6,6 +6,7 @@ import ProductContext from '../../Context/Products/ProductContext'
 const ItemsOrderSummary = () => {
 
     const { shopCart } = useContext(ProductContext)
+    const productContext = useContext(ProductContext)
 
     return (
         <div>
@@ -38,7 +39,9 @@ const ItemsOrderSummary = () => {
                                 <td className="align-middle">{item.quantity}</td>
                                 <td className="align-middle">${(item.quantity * item.price).toFixed(2)}</td>
                                 <td className="align-middle">
-                                    <Button variant="outline-danger">
+                                    <Button
+                                        onClick={() => productContext.removeProductFromCart(item)}
+                                        variant="outline-danger">
                                         Remove
                                     </Button>
                                 </td>
