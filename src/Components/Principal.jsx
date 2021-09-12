@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react'
-import ShopCart from './Shopcart/ShopCart'
 
 import ProductContext from '../Context/Products/ProductContext'
 import { Card, Col, Container, Row, Button, ListGroup } from 'react-bootstrap'
@@ -18,7 +17,7 @@ const Principal = () => {
     }
 
     return (
-        <div>            
+        <div>
             <Container fluid className="mt-4">
                 <Row>
                     <h5 style={{ textAlign: 'left' }}>Filter by category</h5>
@@ -45,13 +44,13 @@ const Principal = () => {
                 <br />
                 <Row>
                     <h5>Choose your product</h5>
-                    <Col xs={9}>
+                    <Col xs={12}>
                         <Row>
                             {
                                 products.map((product) =>
                                     <Col
                                         key={product._id}
-                                        className="pt-4"
+                                        className="pt-4 d-flex justify-content-center"
                                         md={4}>
                                         <Card style={{ width: '14rem' }}>
                                             <Card.Img style={{ height: "12rem" }} variant="top" src={product.imgUrl} />
@@ -73,9 +72,6 @@ const Principal = () => {
                                 )
                             }
                         </Row>
-                    </Col>
-                    <Col xs={3}>
-                        <ShopCart />
                     </Col>
                 </Row>
             </Container>

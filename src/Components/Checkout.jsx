@@ -33,6 +33,11 @@ const Checkout = () => {
                         <Row className="mx-4">
                             <ItemsOrderSummary />
                         </Row>
+                        <Row>
+                            <Col className="mx-4 d-flex justify-content-end">
+                                <p><strong>Total: ${sumTotal}</strong></p>
+                            </Col>
+                        </Row>
                         <Row className="mx-4">
                             <Col>
                                 <div className="d-flex justify-content-start">

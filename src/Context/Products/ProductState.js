@@ -61,10 +61,8 @@ const ProductState = (props) => {
         dispatch({ type: REMOVE_FROM_CART, payload: selectedProduct })
     }
 
-    const increaseQuantity = (selectedProduct) => {
-        console.log(selectedProduct)
-        dispatch({ type: INCREASE_QUANTITY, payload: selectedProduct })
-        console.log(state.shopCart)
+    const increaseQuantity = (selectedProduct) => {        
+        dispatch({ type: INCREASE_QUANTITY, payload: selectedProduct })        
     }
 
     const decreaseQuantity = (selectedProduct) => {

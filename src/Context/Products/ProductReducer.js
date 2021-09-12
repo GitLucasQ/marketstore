@@ -46,30 +46,40 @@ const ProductReducer = (state, action) => {
             };
 
         case INCREASE_QUANTITY:
-            state.shopCart[state.shopCart.findIndex(item => item._id === payload._id)].quantity++
-            state.sumTotal = state.sumTotal + payload.price
+            const updatedShopCartIncrease = state.shopCart.map((item) => {
+                if (item._id === payload._id) {
+                    return { ...item, quantity: item.quantity++ }
+                }
+                return item
+            })
+
             return {
                 ...state,
-                shopCart: [...state.shopCart],
-                sumTotal: state.sumTotal
+                shopCart: updatedShopCartIncrease,
+                sumTotal: state.sumTotal + payload.price
             };
 
         case DECREASE_QUANTITY:
-            state.shopCart[state.shopCart.findIndex(item => item._id === payload._id)].quantity--
-            state.sumTotal = state.sumTotal - payload.price
+            const updatedShopCartDecrease = state.shopCart.map((item) => {
+                if (item._id === payload._id) {
+                    return { ...item, quantity: item.quantity-- }
+                }
+                return item
+            })
+
             return {
                 ...state,
-                shopCart: [...state.shopCart],
-                sumTotal: state.sumTotal
+                shopCart: updatedShopCartDecrease,
+                sumTotal: state.sumTotal - payload.price
             };
 
         case REMOVE_FROM_CART:
-            state.shopCart.splice(state.shopCart.findIndex(item => item._id === payload._id), 1)
-            state.sumTotal = state.sumTotal - (payload.price * payload.quantity)
+            const newShopCart = state.shopCart.filter(item => item._id !== payload._id)
+            const priceTotalItem = payload.price * payload.quantity
             return {
                 ...state,
-                shopCart: [...state.shopCart],
-                sumTotal: state.sumTotal
+                shopCart: newShopCart,
+                sumTotal: state.sumTotal - priceTotalItem
             };
 
         case CLEAR_SHOPCART:
